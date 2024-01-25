@@ -1,4 +1,4 @@
-import { Button, Input, Select, Form, Table } from "antd";
+import { Button, Input, Select, Form, Table, message } from "antd";
 import { useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 
@@ -16,6 +16,9 @@ function All() {
 
   const onFinish = (e: any) => {
     console.log(e);
+    setTimeout(() => {
+      message.success("Login success");
+    }, 2000);
   };
 
   const data = [
@@ -30,7 +33,7 @@ function All() {
       age: 23,
       address: "Address 2",
       key: "2",
-    },
+    }, 
     {
       name: "Yones",
       age: 20,
@@ -55,7 +58,7 @@ function All() {
       title: "Age",
       dataIndex: "age",
       key: "key",
-      sorter : (a: { age: number; },b: { age: number; })=>a.age-b.age
+      sorter: (a: { age: number }, b: { age: number }) => a.age - b.age,
     },
     {
       title: "Address",
@@ -70,7 +73,6 @@ function All() {
         My First button
       </Button>
 
-
       <Input.Search
         className="max-w-lg "
         placeholder="Name"
@@ -78,8 +80,6 @@ function All() {
         prefix={<UserOutlined />}
         allowClear
       ></Input.Search>
-
-
 
       <h1>What are your favorite fruit</h1>
       <Select
@@ -94,8 +94,6 @@ function All() {
           </Select.Option>
         ))}
       </Select>
-
-
 
       <Form onFinish={onFinish} className="max-w-lg ">
         <Form.Item label="User-Name" name="username">
@@ -115,8 +113,6 @@ function All() {
           </Button>
         </Form.Item>
       </Form>
-
-
 
       <Table dataSource={data} columns={columns}></Table>
     </div>
