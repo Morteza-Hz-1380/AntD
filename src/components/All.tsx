@@ -1,4 +1,13 @@
-import { Button, Input, Select, Form, Table, message } from "antd";
+import {
+  Button,
+  Input,
+  Select,
+  Form,
+  Table,
+  message,
+  DatePicker,
+  TimePicker,
+} from "antd";
 import { useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 
@@ -33,7 +42,7 @@ function All() {
       age: 23,
       address: "Address 2",
       key: "2",
-    }, 
+    },
     {
       name: "Yones",
       age: 20,
@@ -115,6 +124,10 @@ function All() {
       </Form>
 
       <Table dataSource={data} columns={columns}></Table>
+
+      <DatePicker />
+      <DatePicker.RangePicker />
+      <TimePicker />
     </div>
   );
 }
