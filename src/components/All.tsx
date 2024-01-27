@@ -7,6 +7,7 @@ import {
   message,
   DatePicker,
   TimePicker,
+  Spin,
 } from "antd";
 import { useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
@@ -128,6 +129,23 @@ function All() {
       <DatePicker />
       <DatePicker.RangePicker />
       <TimePicker />
+
+      <Spin spinning={loading}></Spin>
+      <Button onClick={() => setloading((preValue) => !preValue)}>
+        Toggle Spinning
+      </Button>
+
+      <Spin spinning={loading} >
+        <p>P spin 1</p>
+        <p>P spin 2</p>
+        <p>P spin 3</p>
+      </Spin>
+
+
+      
+      
+ 
+
     </div>
   );
 }
