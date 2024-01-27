@@ -8,6 +8,7 @@ import {
   DatePicker,
   TimePicker,
   Spin,
+  Progress,
 } from "antd";
 import { useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
@@ -143,8 +144,13 @@ function All() {
 
 
       
-      
- 
+      <Progress  percent={55} status="active"/>
+      <Progress  percent={55} type="circle" strokeColor="red" />
+      <Progress  percent={55} type="line" strokeColor="blue"  status="active" strokeWidth={50}/>
+      <Progress  percent={55} type="line" status="success" strokeWidth={50}/>
+      <Progress  percent={55} type="line"  status="exception" strokeWidth={50}/>
+      <Progress  percent={55} type="circle" status="success" />
+      <Progress  percent={55} type="circle" status="exception" />
 
     </div>
   );
