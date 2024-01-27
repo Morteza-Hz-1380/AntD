@@ -10,12 +10,28 @@ import {
   Spin,
   Progress,
 } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
 
 function All() {
   const [loading, setloading] = useState(false);
   const fruits = ["Banana", "Mango", "Orange", "Cherry"];
+  const [dataSurce, setDataSource] = useState([]);
+
+  useEffect(() => {
+    setloading(true);
+    fetch("https://jsonplaceholder.typicode.com/todos")
+      .then((response) => response.json())
+      .then((data) => {
+        setDataSource(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .finally(() => {
+        setloading(false);
+      });
+  }, []);
 
   const onButtonClick = (e: any) => {
     console.log("Button clicked");
@@ -78,6 +94,27 @@ function All() {
     },
   ];
 
+  const colmnss = [
+    {
+      key: "1",
+      title: "ID",
+      dateIndex: "id",
+    },
+    {
+      key: "2",
+      title: "User ID",
+      dateIndex: "userid",
+    },
+    {
+      key: "3",
+      title: "Status",
+      dateIndex: "completed",
+      redner: (completed: any) => {
+        return <p>{completed ? "Completed" : "Not Completed"}</p>;
+      },
+    },
+  ];
+
   return (
     <div className="flex flex-col mx-2 my-2 gap-5">
       <Button loading={loading} onClick={onButtonClick}>
@@ -136,22 +173,27 @@ function All() {
         Toggle Spinning
       </Button>
 
-      <Spin spinning={loading} >
+      <Spin spinning={loading}>
         <p>P spin 1</p>
         <p>P spin 2</p>
         <p>P spin 3</p>
       </Spin>
 
+      <Progress percent={55} status="active" />
+      <Progress percent={55} type="circle" strokeColor="red" />
+      <Progress
+        percent={55}
+        type="line"
+        strokeColor="blue"
+        status="active"
+        strokeWidth={50}
+      />
+      <Progress percent={55} type="line" status="success" strokeWidth={50} />
+      <Progress percent={55} type="line" status="exception" strokeWidth={50} />
+      <Progress percent={55} type="circle" status="success" />
+      <Progress percent={55} type="circle" status="exception" />
 
-      
-      <Progress  percent={55} status="active"/>
-      <Progress  percent={55} type="circle" strokeColor="red" />
-      <Progress  percent={55} type="line" strokeColor="blue"  status="active" strokeWidth={50}/>
-      <Progress  percent={55} type="line" status="success" strokeWidth={50}/>
-      <Progress  percent={55} type="line"  status="exception" strokeWidth={50}/>
-      <Progress  percent={55} type="circle" status="success" />
-      <Progress  percent={55} type="circle" status="exception" />
-
+      <Table loading={loading} columns={colmnss} dataSource={dataSurce}></Table>
     </div>
   );
 }
