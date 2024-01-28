@@ -14,6 +14,7 @@ import {
   Skeleton,
   Space,
   Upload,
+  UploadFile,
 } from "antd";
 import { useEffect, useState } from "react";
 import {
