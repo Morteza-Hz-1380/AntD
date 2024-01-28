@@ -12,8 +12,7 @@ import {
   Tag,
 } from "antd";
 import { useEffect, useState } from "react";
-import { UserOutlined } from "@ant-design/icons";
-import { render } from "react-dom";
+import { AppleFilled, LogoutOutlined, PieChartFilled, UserOutlined } from "@ant-design/icons";
 
 function All() {
   const [loading, setloading] = useState(false);
@@ -274,6 +273,10 @@ function All() {
           ],
         }}
       ></Table>
+
+      <PieChartFilled rotate={45} className="text-red-500 text-9xl" />
+      <AppleFilled className="text-red-500 text-9xl" />
+      <Button icon={<LogoutOutlined  className="text-red-500" />}>Button with custon Icon</Button>
     </div>
   );
 }
