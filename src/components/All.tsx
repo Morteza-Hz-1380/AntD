@@ -10,14 +10,32 @@ import {
   Spin,
   Progress,
   Tag,
+  Modal,
 } from "antd";
 import { useEffect, useState } from "react";
-import { AppleFilled, LogoutOutlined, PieChartFilled, UserOutlined } from "@ant-design/icons";
+import {
+  AppleFilled,
+  LogoutOutlined,
+  PieChartFilled,
+  UserOutlined,
+} from "@ant-design/icons";
 
 function All() {
   const [loading, setloading] = useState(false);
   const fruits = ["Banana", "Mango", "Orange", "Cherry"];
   const [dataSurce, setDataSource] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  }
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  }
+  const handleCancle = () => {
+    setIsModalOpen(false);
+  }
 
   useEffect(() => {
     setloading(true);
@@ -276,7 +294,19 @@ function All() {
 
       <PieChartFilled rotate={45} className="text-red-500 text-9xl" />
       <AppleFilled className="text-red-500 text-9xl" />
-      <Button icon={<LogoutOutlined  className="text-red-500" />}>Button with custon Icon</Button>
+      <Button icon={<LogoutOutlined className="text-red-500" />}>
+        Button with custon Icon
+      </Button>
+
+
+
+
+      <Button onClick={showModal}>Open Modal</Button>
+      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancle}>
+        <p>Some Content</p>
+        <p>Some Content</p>
+        <p>Some Content</p>
+      </Modal>
     </div>
   );
 }
