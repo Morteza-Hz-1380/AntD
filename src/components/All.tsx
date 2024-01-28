@@ -9,9 +9,11 @@ import {
   TimePicker,
   Spin,
   Progress,
+  Tag,
 } from "antd";
 import { useEffect, useState } from "react";
 import { UserOutlined } from "@ant-design/icons";
+import { render } from "react-dom";
 
 function All() {
   const [loading, setloading] = useState(false);
@@ -115,6 +117,68 @@ function All() {
     },
   ];
 
+  const saton = [
+    {
+      title: "Student ID",
+      dataIndex: "id",
+    },
+
+    {
+      title: "Student Name",
+      dataIndex: "name",
+    },
+
+    {
+      title: "Student Grade",
+      dataIndex: "grade",
+      render: (tag) => {
+        const color = tag.includes("A")
+          ? "Green"
+          : tag.includes("B")
+          ? "Blue"
+          : "Red";
+        return (
+          <Tag color={color} key={tag}>
+            {tag}
+          </Tag>
+        );
+      },
+    },
+  ];
+
+  const datamanba = [
+    {
+      key: "1",
+      id: 1,
+      name: "Student Name 1",
+      grade: "A+",
+    },
+    {
+      key: "2",
+      id: 2,
+      name: "Student Name 2",
+      grade: "A",
+    },
+    {
+      key: "3",
+      id: 3,
+      name: "Student Name 3",
+      grade: "B",
+    },
+    {
+      key: "4",
+      id: 4,
+      name: "Student Name 4",
+      grade: "c",
+    },
+    {
+      key: "5",
+      id: 5,
+      name: "Student Name 5",
+      grade: "A",
+    },
+  ];
+
   return (
     <div className="flex flex-col mx-2 my-2 gap-5">
       <Button loading={loading} onClick={onButtonClick}>
@@ -194,6 +258,22 @@ function All() {
       <Progress percent={55} type="circle" status="exception" />
 
       <Table loading={loading} columns={colmnss} dataSource={dataSurce}></Table>
+
+      <Table
+        columns={saton}
+        dataSource={datamanba}
+        rowSelection={{
+          type: "checkbox",
+          onSelect: (record) => {
+            console.log(record);
+          },
+          selections: [
+            Table.SELECTION_ALL,
+            Table.SELECTION_INVERT,
+            Table.SELECTION_NONE,
+          ],
+        }}
+      ></Table>
     </div>
   );
 }
