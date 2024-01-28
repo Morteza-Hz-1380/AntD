@@ -11,6 +11,8 @@ import {
   Progress,
   Tag,
   Modal,
+  Skeleton,
+  Space,
 } from "antd";
 import { useEffect, useState } from "react";
 import {
@@ -28,14 +30,14 @@ function All() {
 
   const showModal = () => {
     setIsModalOpen(true);
-  }
+  };
 
   const handleOk = () => {
     setIsModalOpen(false);
-  }
+  };
   const handleCancle = () => {
     setIsModalOpen(false);
-  }
+  };
 
   useEffect(() => {
     setloading(true);
@@ -298,15 +300,41 @@ function All() {
         Button with custon Icon
       </Button>
 
-
-
-
       <Button onClick={showModal}>Open Modal</Button>
-      <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancle}>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancle}
+      >
         <p>Some Content</p>
         <p>Some Content</p>
         <p>Some Content</p>
       </Modal>
+
+      <Skeleton
+        loading={true}
+        active
+        avatar={{ shape: "square" }}
+        title={{ width: "300px" }}
+        paragraph={{
+          rows: 4,
+          width: [500, 500, 500, 100],
+        }}
+      >
+        Data is available now .
+      </Skeleton>
+      <Space size={12} direction="vertical">
+        <Skeleton.Avatar active shape="circle"></Skeleton.Avatar>
+        <Skeleton.Button
+          active
+          style={{ width: "200px" }}
+          shape="round"
+        ></Skeleton.Button>
+        <Skeleton.Image active></Skeleton.Image>
+        <Skeleton.Input active></Skeleton.Input>
+        <Skeleton.Node active><h6>loading...</h6></Skeleton.Node>
+      </Space>
     </div>
   );
 }
