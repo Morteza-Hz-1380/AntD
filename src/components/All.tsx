@@ -380,6 +380,11 @@ function All() {
       >
         <Button icon={<UploadOutlined />}>Upload</Button>
       </Upload>
+
+
+      
+
+
     </div>
   );
 }
