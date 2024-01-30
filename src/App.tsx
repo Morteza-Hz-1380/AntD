@@ -1,6 +1,7 @@
 import All from "./components/All";
 import Layouts from "./components/Layouts";
 import SearchTable from "./components/SearchTable";
+import Validation from "./components/Validation";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <All />
       <SearchTable />
       <Layouts />
+      <Validation />
     </>
   );
 }
